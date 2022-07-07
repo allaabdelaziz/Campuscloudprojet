@@ -1,20 +1,225 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<!-- Start Nav Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top lead">
+		<div class="container">
+			<a class="navbar-brand" href="#">MY COMPANY</a>
+			<!-- Ce boutton apparaitera en responsive -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item ms-4">
+						<a class="nav-link" aria-current="page" href="#home">Home</a>
+					</li>
+					<li class="nav-item ms-4">
+						<a class="nav-link" aria-current="page" href="#services">Services</a>
+					</li>
+					<li class="nav-item ms-4">
+						<a class="nav-link" aria-current="page" href="#about">About</a>
+					</li>
+					<li class="nav-item ms-4">
+						<a class="nav-link" aria-current="page" href="#clients">Clients</a>
+					</li>
+					<li class="nav-item ms-4">
+						<a class="nav-link" aria-current="page" href="#contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End Nav section -->
+	<!-- Start home section -->
+	<section id="home">
+		<div
+			class="container">
+			<!-- la class container définit la largeur souhaitée pour la section -->
+			<div class="row text-white align-items-center vh-100">
+				<div
+					class="col-md-6 p-3">
+					<!-- la class col-md-6 : permet de dire au navigateur que cette div occupera la moitié de l'espace disponible 12/2 à partir de l'écran medium et plus (lg - xl - xxl) en dessous de md (sm et xs : la div occupera la totalité de l'espace disponible 12/12) -->
+					<h1 class="fs-1">Best Digital Agency</h1>
+					<p class="lh-lg py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut eaque nisi autem
+						                        odio
+						                        sit dolorem
+						                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut eaque nisi autem odio
+						                        sit dolorem
+						                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut eaque nisi autem odio
+						                        sit dolorem
+						                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut eaque nisi autem odio
+						                        sit dolorem
+						                        iusto accusantium, quis nobis! Esse in totam hic, doloribus sunt modi aspernatur praesentium
+						                        amet dolore.</p>
+					<button
+						class="btn btn-outline-light">
+						<!-- Intégration de bootstrap icon -->
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewbox="0 0 16 16">
+							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+						</svg>
+						Join Now
+					</button>
+				</div>
+				<div class="col-md-6 text-center">
+					<img class="img-fluid w-75 mt-3" src="{{ asset('assets/img/digital-agency.png') }}" alt="Digital Agency">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End home section -->
+	<!-- Start Services section -->
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Hp/OneDrive/Desktop/cloud campus/foundobject/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Hp/OneDrive/Desktop/cloud campus/foundobject/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<Section id="services">
+		<div class="container text-center">
+			<div class="row gx-5">
+				<div class="col-12">
+					<h2 class="border-bottom w-25 border-3 pb-3 mb-5 mx-auto">Services</h2>
+				</div>
+				<div class="col-md-4">
+					<img class="mb-5" src="img/asset1.jpg" alt=" Growth Marketing">
+					<h3>Growth Marketing</h3>
+					<p class="fw-light pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dicta
+						                        ipsam molestias dolore, deleniti repudiandae corporis reprehenderit nostrum totam, officia nihil
+						                        blanditiis, illo similique omnis saepe alias possimus! Nesciunt, quae!</p>
+				</div>
+				<div class="col-md-4">
+					<img class="mb-5" src="img/asset2.jpg" alt=" Online Branding">
+					<h3>Online Branding</h3>
+					<p class="fw-light pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dicta
+						                        ipsam molestias dolore, deleniti repudiandae corporis reprehenderit nostrum totam, officia nihil
+						                        blanditiis, illo similique omnis saepe alias possimus! Nesciunt, quae!</p>
+				</div>
+				<div class="col-md-4">
+					<img class="mb-5" src="{{ asset('assets/img/asset3.jpg') }}" alt=" Animated Ads">
+					<h3>Animated Ads</h3>
+					<p class="fw-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dicta ipsam
+						                        molestias dolore, deleniti repudiandae corporis reprehenderit nostrum totam, officia nihil
+						                        blanditiis, illo similique omnis saepe alias possimus! Nesciunt, quae!</p>
+				</div>
+				<div class="col-md-4"></div>
+				<div id="about"></div>
+			</div>
+		</div>
+
+	</Section>
+	<!-- End Services section -->
+	<!-- Start About section -->
+	<section id="about">
+		<div class="container">
+			<h2 class="text-center border-bottom w-25 border-3 pb-3 mb-5 mx-auto">About</h2>
+			<div class="row justify-content-center py-3">
+				<div class="col-md-6">
+					<h3>We are different</h3>
+					<p class=" lead lh-lg pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sequi
+						                        necessitatibus temporibus culpa quos, eligendi rem tempore atque rerum cupiditate? Omnis officia
+						                        reprehenderit natus, recusandae possimus fugiat soluta rem atque!
+						                        Reiciendis esse, earum aperiam saepe optio sed tenetur iste asperiores? Ea sit maxime dicta
+						                        doloremque quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas.
+						                        Repellat cupiditate magnam nesciunt.
+						                        quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas. Repellat
+						                        cupiditate magnam nesciunt.</p>
+				</div>
+				<div class="col-md-5">
+					<img class="img-fluid w-75 d-block mx-auto" src="{{ asset('assets/img/about.svg') }}" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End About section -->
+	<!-- start section clients -->
+	<section id="clients">
+		<div class="container">
+			<h2 class="text-center border-bottom w-25 border-3 pb-3 my-5 mx-auto">Clients</h2>
+			<div class="row justify-content-center text-center p-3">
+				<div class="col-md-5 border-start border-3 ps-4 mb-4">
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae saepe vero repellendus
+						                        nostrum ullam excepturi nihil facilis facere vitae, autem libero error nesciunt, alias
+					</p>
+					<img class="rounded-circle" src="img/face1.jpg" alt="client 1">
+					<span class="fw-bold">Agustina Moscov |
+					</span>
+					<em>Designer</em>
+				</div>
+				<div class="col-md-5 border-start border-3 ps-4">
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae saepe vero repellendus
+						                        nostrum ullam excepturi nihil facilis facere vitae, autem libero error nesciunt, alias
+					</p>
+					<img class="rounded-circle" src="img/face2.jpg" alt="client 1">
+					<span class="fw-bold">Agustino Moscov |
+					</span>
+					<em>Designer</em>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<section id="in-action">
+		<div class="container-fluid">
+			<h2 class="text-center border-bottom w-25 border-3 pb-3 my-5 mx-auto ">In Action</h2>
+		</div>
+
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="img/img1.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img src="img/img2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img src="img/img3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+
+	</section>
+	<!-- End section clients -->
+	<!-- Start contact section -->
+	<section id="contact" class='container'>
+		<h2 class="text-center border-bottom w-25 border-3 pb-3 my-5 mx-auto ">Contact</h2>
+		<!-- Intégration d'un formulaire avec Bootstrap -->
+		<form class="w-50 mx-auto">
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Last Name</label>
+				<input type="text" class="form-control" id="formGroupExampleInput">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">First Name</label>
+				<input type="text" class="form-control" id="formGroupExampleInput2">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">Email address</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlTextarea1" class="form-label">Message</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+	</section>
+
+
 {% endblock %}

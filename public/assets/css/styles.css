@@ -1,0 +1,9 @@
+.navbar, #home, .footer{
+    background: linear-gradient(to right, #53ad53, #255310);
+}
+#services, #clients, #contact{
+    padding:10% 0;
+}
+.border-3{
+border-color:#5cad53 !important
+}
