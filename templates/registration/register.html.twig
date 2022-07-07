@@ -1,54 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-<div class="row  d-flex justify-content-center mt-5 ">
-    <div class="col-md-5 m-5  bg-register ">
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-     <h1 class=" text-center">Inscription</h1>
+<h2 class="text-center border-bottom w-25 border-3 py-3 my-5 mx-auto ">
+			<i>Inscription</i>
+		</h2>
 
-    {{ form_start(registrationForm) }}
-      	{{ form_start(registrationForm) }}
-			{{ form_row(registrationForm.secondname, {
-            label: 'nom'
-        }) }}
-			{{ form_row(registrationForm.firstname, {
-            label: 'prenom'
-        }) }}
-			<div class="row">
-				<div class="col-md-6">
-					{{ form_row(registrationForm.address, {
-            label: 'adresse'
-        }) }}</div>
-				<div class="col-md-6">
-					{{ form_row(registrationForm.zipcode, {
-            label: 'code postale'
-        }) }}</div>
+	<section  class='container  d-flex justify-content-center mt-5'>
+		
+		{{ form_start(registrationForm) }}
+		<form class=" text-center ">
+			<div class="mb-3">
+				<div>
+					{{ form_widget(registrationForm.civilite  ) }}
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Nom:</label>
+
+				<div>{{ form_widget(registrationForm.secondname) }}</div>
 			</div>
 
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Prenom:</label>
 
-			{{ form_row(registrationForm.city, {
-            label: 'ville'
-        }) }}
-			{{ form_row(registrationForm.phone, {
-            label: 'telephone'
-        }) }}
-			{{ form_row(registrationForm.email, {
-            label: 'email'
-        }) }}
-			{{ form_row(registrationForm.plainPassword, {
-            label: 'mot de passe'
-            
-        }) }}
-        <input type="checkbox" required>J'ai lu et j'accepte les <a href="#"> conditions d'utilisation </a> ainsi que   <a href="#"> la politique de confidentialité  </a>
- <br>
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
-    {{ form_end(registrationForm) }}
+				<div>
+					{{ form_widget(registrationForm.firstname ) }}</div>
+			</div>
 
-    </div>
-</div>
-   {% endblock %}
+			<div class="row ">
+				<div class="col-md-6">
+					<div class="mb-3">
+						<label for="formGroupExampleInput" class="form-label">Adresse:</label>
+						<div>
+							{{ form_widget(registrationForm.address ) }}
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="formGroupExampleInput" class="form-label">Codezip:</label>
+						<div>
+							{{ form_widget(registrationForm.zipcode  ) }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Ville:</label>
+				<div>
+					{{ form_widget(registrationForm.city ) }}
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Telephone:</label>
+				<div>
+					{{ form_widget(registrationForm.phone) }}
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Email:</label>
+				<div>
+					{{ form_widget(registrationForm.email) }}
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">mot de passe:</label>
+				<div>
+					{{ form_widget(registrationForm.plainPassword ) }}
+				</div>
+			</div>
+
+			<input type="checkbox" required>J'ai lu et j'accepte les<a href="#">conditions d'utilisation ainsi que<a href="#">
+					la politique de confidentialité
+				</a>
+			</a>
+			<br>
+			<button type="submit" class="btn btn-primary">S'inscrire</button>
+			{{ form_end(registrationForm) }}
+		</form>
+	</section>
+
+
+{% endblock %}
