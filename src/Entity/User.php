@@ -54,10 +54,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Objet::class)]
     private $objets;
 
-    #[ORM\OneToMany(mappedBy: 'sender_id', targetEntity: Messages::class)]
+    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messages::class , orphanRemoval: true)]
     private $sender;
 
-    #[ORM\OneToMany(mappedBy: 'recipient_id', targetEntity: Messages::class)]
+    #[ORM\OneToMany(mappedBy: 'recipient', targetEntity: Messages::class, orphanRemoval: true)]
     private $recipient;
 
  
@@ -269,7 +269,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->sender->contains($sender)) {
             $this->sender[] = $sender;
-            $sender->setSenderId($this);
+            $sender->setSender($this);
         }
 
         return $this;
@@ -279,8 +279,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->sender->removeElement($sender)) {
             // set the owning side to null (unless already changed)
-            if ($sender->getSenderId() === $this) {
-                $sender->setSenderId(null);
+            if ($sender->getSender() === $this) {
+                $sender->setSender(null);
             }
         }
 
@@ -299,7 +299,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->recipient->contains($recipient)) {
             $this->recipient[] = $recipient;
-            $recipient->setRecipientId($this);
+            $recipient->setRecipient($this);
         }
 
         return $this;
@@ -309,8 +309,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->recipient->removeElement($recipient)) {
             // set the owning side to null (unless already changed)
-            if ($recipient->getRecipientId() === $this) {
-                $recipient->setRecipientId(null);
+            if ($recipient->getRecipient() === $this) {
+                $recipient->setRecipient(null);
             }
         }
 

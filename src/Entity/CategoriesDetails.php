@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use Doctrine\Common\Collections\Collection;
+use App\Repository\CategoriesDetailsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategoriesDetailsRepository::class)]
 class CategoriesDetails
 {
+    use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -19,9 +23,20 @@ class CategoriesDetails
     #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'categoriesDetails')]
     private $Categorie;
 
-    #[ORM\OneToOne(inversedBy: 'categoriesDetails', targetEntity: Objet::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Objet;
+    #[ORM\OneToMany(mappedBy: 'categoryDetails', targetEntity: Objet::class)]
+    private $objets;
+
+    public function __construct()
+    {
+        $this->objets = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
+
+    }
+    
+    public function __toString()
+    {
+        return $this->id;
+    }
 
     public function getId(): ?int
     {
@@ -52,14 +67,34 @@ class CategoriesDetails
         return $this;
     }
 
-    public function getObjet(): ?Objet
+
+
+    /**
+     * @return Collection<int, Objet>
+     */
+    public function getObjets(): Collection
     {
-        return $this->Objet;
+        return $this->objets;
     }
 
-    public function setObjet(Objet $Objet): self
+    public function addObjet(Objet $objet): self
     {
-        $this->Objet = $Objet;
+        if (!$this->objets->contains($objet)) {
+            $this->objets[] = $objet;
+            $objet->setCategoryDetails($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObjet(Objet $objet): self
+    {
+        if ($this->objets->removeElement($objet)) {
+            // set the owning side to null (unless already changed)
+            if ($objet->getCategoryDetails() === $this) {
+                $objet->setCategoryDetails(null);
+            }
+        }
 
         return $this;
     }

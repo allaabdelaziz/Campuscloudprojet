@@ -10,33 +10,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item ms-2">
-                        <a class="nav-link" aria-current="page" href="{{path('app_home')}}">Accueil</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="nav-link" aria-current="page" href="#services">comment ca marche!</a>
-                    </li>
-                    <li class="nav-item ms-2">
+                 
+                  
+                    <li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="#about">à propos de nous</a>
                     </li>
                   
-                    <li class="nav-item ms-2">
+                    <li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="#contact">Contact</a>
                     </li>
 					
 
 					{% if app.user %}
-					<li class="nav-item ms-2">
-                        <a class="nav-link" aria-current="page" href="{{#}}">profil</a>
+					<li class="nav-item ">
+                        <a class="nav-link" aria-current="page" href="{{path('app_user_profile')}}">profil</a>
                     </li>
-					<li class="nav-item ms-2">
+					<li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="{{path('app_logout')}}">Me deconnecter</a>
                     </li>
 					{% else %}
-							<li class="nav-item ms-2">
+							<li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="{{path('app_register')}}">M'inscrire</a>
                     </li>
-					<li class="nav-item ms-2">
+					<li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="{{path('app_login')}}">Me Connecter</a>
                     </li>
 					{% endif %}

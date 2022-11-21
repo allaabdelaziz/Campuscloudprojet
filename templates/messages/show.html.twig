@@ -1,0 +1,42 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Messages
+{% endblock %}
+
+{% block body %}
+	<div class="col-md-8">
+		<h1>Messages</h1>
+
+		<table class="table">
+			<tbody>
+
+
+				<tr>
+					<th>Message</th>
+					<td>{{ message.message }}</td>
+				</tr>
+
+			
+
+				{% if message.imagemessage == null %}
+					{% else %}
+						<tr>
+							<th>Message</th>
+							<td><a href="{{ asset('uploads/messages/'~ message.imagemessage) }}"><img style="width: 90px;" src="{{ asset('uploads/messages/'~ message.imagemessage) }}" alt="..."/></a></td>
+						</tr>
+				{% endif %}
+					<td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+
+			</tbody>
+		</table>
+
+
+		<div class="row">
+			<a class=" btn col-md-3 text-primary" href="{{ path('app_messages_show', {'id': message.id}) }}">
+				<i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+			</a>
+			<div class="col-md-3 ">{{ include('messages/_delete_form.html.twig') }}</div>
+
+		</div>
+	</div>
+{% endblock %}

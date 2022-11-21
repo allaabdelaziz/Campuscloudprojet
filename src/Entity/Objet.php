@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ObjetRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ObjetRepository;
+use App\Entity\Trait\CreatedAtTrait;
 
 #[ORM\Entity(repositoryClass: ObjetRepository::class)]
 class Objet
 {
+    use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -35,11 +37,36 @@ class Objet
     #[ORM\JoinColumn(nullable: false)]
     private $User;
 
-    #[ORM\OneToOne(mappedBy: 'Objet', targetEntity: CategoriesDetails::class, cascade: ['persist', 'remove'])]
-    private $categoriesDetails;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $created_at;
+
+
+    #[ORM\Column(type: 'boolean')]
+    private $active;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isfound;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $clues;
+
+    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'objets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
+
+    #[ORM\ManyToOne(targetEntity: CategoriesDetails::class, inversedBy: 'objets')]
+    private $categoryDetails;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $LostDate;
+
+    #[ORM\Column(type: 'string', length: 25, nullable: true)]
+    private $lostCity;
+
+    
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -130,32 +157,91 @@ class Objet
         return $this;
     }
 
-    public function getCategoriesDetails(): ?CategoriesDetails
+    public function isActive(): ?bool
     {
-        return $this->categoriesDetails;
+        return $this->active;
     }
 
-    public function setCategoriesDetails(CategoriesDetails $categoriesDetails): self
+    public function setActive(bool $active): self
     {
-        // set the owning side of the relation if necessary
-        if ($categoriesDetails->getObjet() !== $this) {
-            $categoriesDetails->setObjet($this);
-        }
-
-        $this->categoriesDetails = $categoriesDetails;
+        $this->active = $active;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function isIsfound(): ?bool
     {
-        return $this->created_at;
+        return $this->isfound;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setIsfound(bool $isfound): self
     {
-        $this->created_at = $created_at;
+        $this->isfound = $isfound;
 
         return $this;
+    }
+
+    public function getClues(): ?string
+    {
+        return $this->clues;
+    }
+
+    public function setClues(string $clues): self
+    {
+        $this->clues = $clues;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCategoryDetails(): ?CategoriesDetails
+    {
+        return $this->categoryDetails;
+    }
+
+    public function setCategoryDetails(?CategoriesDetails $categoryDetails): self
+    {
+        $this->categoryDetails = $categoryDetails;
+
+        return $this;
+    }
+
+    public function getLostDate(): ?\DateTimeInterface
+    {
+        return $this->LostDate;
+    }
+
+    public function setLostDate(?\DateTimeInterface $LostDate): self
+    {
+        $this->LostDate = $LostDate;
+
+        return $this;
+    }
+
+    public function getLostCity(): ?string
+    {
+        return $this->lostCity;
+    }
+
+    public function setLostCity(?string $lostCity): self
+    {
+        $this->lostCity = $lostCity;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->id;
     }
 }

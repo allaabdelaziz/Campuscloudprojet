@@ -39,28 +39,211 @@ class ObjetRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByActive()
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 0 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            // ->setParameter('val', $value)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+
+    public function findByUser( $user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 0 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User = :user')
+             ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+    public function lostByUser( $user)
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User = :user')
+            ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function statusByUser( $user)
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User = :user')
+            ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByCategory( $category ,$user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User != :user')
+            ->andWhere('o.categories =:category')
+            
+             ->setParameter('user', $user)
+             ->setParameter('category', $category)
+            ->orderBy('o.categoriesdetails', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+
+    public function findByDetailsCategory( $categoriesdetails ,$user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User != :user')
+            ->andWhere('o.categoriesdetails =:categoriesdetails')
+             ->setParameter('user', $user)
+             ->setParameter('categoriesdetails', $categoriesdetails)
+            ->orderBy('o.categoriesdetails', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findByobjectname( $objectname ,$user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User != :user')
+            ->andWhere('o.objectname =:objectname')
+             ->setParameter('user', $user)
+             ->setParameter('objectname', $objectname)
+            ->orderBy('o.categoriesdetails', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Objet[] Returns an array of Objet objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   public function findByExampleField($user): array
+   {
+       return $this->createQueryBuilder('o')
+           ->andWhere('o.status =0')
+           ->andWhere('o.User = :user')
+           ->setParameter('user', $user)
+           ->orderBy('o.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+    }
 
-//    public function findOneBySomeField($value): ?Objet
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findObjectsByUser( $user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 0 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User = :user')
+             ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function LostObjectsByOthers( $user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User != :user')
+             ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    public function findByObjectlostCategory( $category ,$user)
+    {
+        return $this->createQueryBuilder('o')
+             ->where('o.status = 1 ')
+            ->andWhere('o.active = 1')
+            ->andWhere('o.isfound = 0')
+            ->andWhere('o.User != :user')
+            ->andWhere('o.category =:category')
+             ->setParameter('user', $user)
+             ->setParameter('category', $category)
+            ->orderBy('o.categoryDetails', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByObjectlostDetailsCategory( $ids , $categoryDetails )
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.id in (:ids)')
+            ->andWhere('o.categoryDetails =:categoryDetails')
+             ->setParameter('categoryDetails', $categoryDetails)
+             ->setParameter('ids',array_values($ids) )
+            ->orderBy('o.categoryDetails', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByObjectlostCity( $ids , $lostCity )
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.id in (:ids)')
+            ->andWhere('o.lostCity =:lostCity')
+             ->setParameter('lostCity', $lostCity)
+             ->setParameter('ids',array_values($ids) )
+            ->orderBy('o.lostCity', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
+
+
 }

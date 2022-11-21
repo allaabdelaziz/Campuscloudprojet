@@ -8,20 +8,20 @@
 
 	<!-- End Nav section -->
 	<!-- Start home section -->
-		<section id="home"> <div
-			class="container">
+		<section id="home">
+		 <div class="container">
 			<!-- la class container définit la largeur souhaitée pour la section -->
 			<div class="row text-white align-items-center vh-100">
 				<div
 					class="col-md-6 p-3">
 					<!-- la class col-md-6 : permet de dire au navigateur que cette div occupera la moitié de l'espace disponible 12/2 à partir de l'écran medium et plus (lg - xl - xxl) en dessous de md (sm et xs : la div occupera la totalité de l'espace disponible 12/12) -->
-					<h1 class="fs-1">Best Digital Agency</h1>
+
 					<h4 class="lh-lg py-3">
 						<em>Vous avez perdu ou trouvé un objet ? Déclarez-le et la communauté se mobilise pour vous aider à le retrouver
 						</em>
 					</h4>
 					<button
-						class="btn btn-outline-light">
+						class="btn btn-outline-light mx-4">
 						<!-- Intégration de bootstrap icon -->
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewbox="0 0 16 16">
 							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
@@ -29,6 +29,9 @@
 						</svg>
 						Join Now
 					</button>
+					<button class=" btn btn-outline-light mx-4 p-0 nav-item ">
+                        <a class="nav-link" aria-current="page" href="#services">Comment ca marche ?</a>
+                    </button>
 				</div>
 				<div class="col-md-6 text-center">
 					<img class="img-fluid w-75 mt-3" src="{{ asset('assets/img/digital-agency.png') }}" alt="Digital Agency">
@@ -45,9 +48,9 @@
 				<div class="col-12">
 					<h2 class="border-bottom w-25 border-3 pb-3 mb-5 mx-auto">comment ca marche!</h2>
 				</div>
-				<div class="row d-flex justify-content-center">
+				<div class="row d-flex justify-content-center w-100">
 
-					<div id="carouselExampleDark" class=" col carousel carousel-dark slide m-3 p-3 " data-bs-ride="carousel">
+					<div id="carouselExampleDark" class=" col carousel carousel-dark slide m-3 p-3  " data-bs-ride="carousel">
 
 						<div class="carousel-indicators">
 							<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -96,56 +99,58 @@
 						</button>
 					</div>
 				</div>
+			</div>
+		</div>
 
-
-			</Section>
-			<!-- End Services section -->
-			<!-- Start About section -->
-			<section id="about">
-				<div class="container">
-					<h2 class="text-center border-bottom w-25 border-3 pb-3 mb-5 mx-auto">à propos de nous</h2>
-					<div class="row justify-content-center py-3">
-						<div class="col-md-6">
-							<h3>Mycompany</h3>
-							<p class=" lead lh-lg pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sequi
-																				                        necessitatibus temporibus culpa quos, eligendi rem tempore atque rerum cupiditate? Omnis officia
-																				                        reprehenderit natus, recusandae possimus fugiat soluta rem atque!
-																				                        Reiciendis esse, earum aperiam saepe optio sed tenetur iste asperiores? Ea sit maxime dicta
-																				                        doloremque quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas.
-																				                        Repellat cupiditate magnam nesciunt.
-																				                        quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas. Repellat
-																				                        cupiditate magnam nesciunt.</p>
-						</div>
-						<div class="col-md-5">
-							<img class="img-fluid w-75 d-block mx-auto" src="{{ asset('assets/img/about.svg') }}" alt="">
-						</div>
-					</div>
+	</Section>
+	<!-- End Services section -->
+	<!-- Start About section -->
+	<section id="about" class=" bg-dark">
+		<div class="container bg-dark pt-5">
+			<h2 class="text-center text-white border-bottom w-50 border-3 pb-3 mb-5 mx-auto">à propos de nous</h2>
+			<div class="row justify-content-center py-3">
+				<div class="col-md-6">
+					<h3 class="text-white">Mycompany</h3>
+					<p class=" lead lh-lg pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sequi
+																																																												                        necessitatibus temporibus culpa quos, eligendi rem tempore atque rerum cupiditate? Omnis officia
+																																																												                        reprehenderit natus, recusandae possimus fugiat soluta rem atque!
+																																																												                        Reiciendis esse, earum aperiam saepe optio sed tenetur iste asperiores? Ea sit maxime dicta
+																																																												                        doloremque quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas.
+																																																												                        Repellat cupiditate magnam nesciunt.
+																																																												                        quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas. Repellat
+																																																												                        cupiditate magnam nesciunt.</p>
 				</div>
-			</section>
-				<section id="contact" class='container'> <h2 class="text-center border-bottom w-25 border-3 pb-3 my-5 mx-auto ">Contact</h2>
-				<!-- Intégration d'un formulaire avec Bootstrap -->
-				<form class="w-50 mx-auto">
-					<div class="mb-3">
-						<label for="formGroupExampleInput" class="form-label">Last Name</label>
-						<input type="text" class="form-control" id="formGroupExampleInput">
-					</div>
-					<div class="mb-3">
-						<label for="formGroupExampleInput2" class="form-label">First Name</label>
-						<input type="text" class="form-control" id="formGroupExampleInput2">
-					</div>
-					<div class="mb-3">
-						<label for="exampleInputEmail1" class="form-label">Email address</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-						<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-					</div>
-					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">Message</label>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<div class="col-md-5">
+					<img class="img-fluid w-75 d-block mx-auto" src="{{ asset('assets/img/about.svg') }}" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="contact" class='container'>
+		<h2 class="text-center  w-25 border-3 pb-3 my-2 mx-auto ">Contact</h2>
+		<!-- Intégration d'un formulaire avec Bootstrap -->
+		<form class="w-50 mx-auto">
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Last Name</label>
+				<input type="text" class="form-control" id="formGroupExampleInput">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">First Name</label>
+				<input type="text" class="form-control" id="formGroupExampleInput2">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">Email address</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlTextarea1" class="form-label">Message</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 
-			</section>
+	</section>
+		{% include "partials/footer.html.twig" %}
 
-
-		{% endblock %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}edit
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid  d-flex justify-content-center">
+		<div class="row container  d-flex justify-content-center bg-object">
+			<div class="col-md-6">
+
+				<h1>edit OBJECT</h1>
+				{{ form_start(form) }}
+				{{ form_start(form) }}
+
+				{{ form_row(form.status, {label:"Etat ? *" }) }}
+				{{ form_row(form.category, { label: 'choisir une categorie *' }) }}
+				{{ form_row(form.categoryDetails, { label: 'Plus précisément *' }) }}
+				{{ form_row(form.clues, {
+								            label: 'Ou ? ' ,
+											help :" Ex: Metro ,Bus , Aeroport , ......"  
+				}) }}
+
+				{{ form_row(form.name, { label: "Nom D'objet * "  }) }}
+				{{ form_row(form.lost_adress, {
+								            label: 'Adresse'	,
+											help :"Ex: 19 Avenue des Chenes" }
+				) }}
+				<div class="row">
+					<div class="col-md-6">{{ form_row(form.lost_city, {
+								            label: 'Ville',
+											help :"Ex: Paris" }
+								        ) }}</div>
+
+					<div class="col-md-6">
+						{{ form_row(form.lost_zip, {
+								            label: 'code postal',
+											help :" Ex: 75000" }
+								        ) }}</div>
+				</div>
+
+				{{ form_row(form.Lost_date, {  label: 'Quand ? '  }) }}
+				{{ form_row(form.image, { label: "Photo de l'objet"}) }}
+			
+							{{ form_row(form.description, {    label: 'Details',
+										help :" Donnez un maximum de précision sur les circonstances de la perte/trouvaille et décrivez au mieux l’objet"
+  							 }) }}
+
+
+				<div class="text-center">
+					<button class="btn btn-primary mx-5">{{ button_label|default('Save') }}</button>
+					<a href="{{ path('app__profileobject') }}">back to list</a>
+				</div>
+
+
+				{{ form_end(form) }}
+				
+
+			</div>
+			{% include "partials/footer.html.twig" %}
+		</div>
+	</div>
+
+
+{% endblock %}

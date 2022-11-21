@@ -1,0 +1,53 @@
+{% extends 'base2.html.twig' %}
+{% block title %} votre objet
+{% endblock %}
+
+{% block body %}
+<div class =" container row d-flex justify-content-center">
+	<div class="card  shadow border-0 ">
+
+		<h1 class="card-title m-2   ">{{objet.name}}</h1>
+
+		<div class="col-md-4">
+			{% if objet.image == null %}
+				<img class=" w-75" src="{{asset('images/no-image-featured-image.png')}}" alt="">
+
+			{% else %}
+				<img class="w-75 " src="{{ asset('uploads/object/'~ objet.image)}}" alt="..."/>
+			{% endif %}
+		</div>
+		<div class="card-body px-4 col-md-8">
+			<p>
+				<h5 class="m-0 p-0">Description:</h5>
+				{{objet.description}}</p>
+
+			<p>
+				<h5 class="m-0 p-0">Adresse d'objet:</h5>
+				{{objet.lostadress}}
+				,
+				{{objet.lostzip}}</p>
+
+			<a class="btn btn-danger " href="{{path('app__profileobject')}}">back to list</a>
+		</div>
+
+
+		<div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+			<div class="d-flex align-items-end justify-content-between">
+				<div class="d-flex align-items-center mb-3">
+
+					<div class="small">
+
+						<div class="text-muted">{{objet.createdat |format_datetime() }}
+							&middot;
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+	</div>
+</div>{% endblock %}

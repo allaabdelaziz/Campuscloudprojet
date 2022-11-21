@@ -1,0 +1,22 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %} nouveau Message
+{% endblock %}
+
+{% block body %}
+<div class="com-md-8  m-5 ">
+
+<h1>créer un nouveau message</h1>
+
+<div>
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+
+ 
+
+<button class="btn btn-primary m-5">{{ button_label|default('Save') }}</button>
+	 <a class ="btn btn-danger " href="{{path('app_matching_trouver')}}">retour à la liste </a>
+    	{{ form_end(form) }}
+</div>
+</div>
+{% endblock %}

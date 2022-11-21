@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Repository\MessagesRepository;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
 class Messages
 {
+    use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -15,11 +17,11 @@ class Messages
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sender')]
     #[ORM\JoinColumn(nullable: false)]
-    private $sender_id;
+    private $sender;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'recipient')]
     #[ORM\JoinColumn(nullable: false)]
-    private $reciipent_id;
+    private $recipient;
 
     #[ORM\Column(type: 'text')]
     private $message;
@@ -35,32 +37,37 @@ class Messages
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $created_at;
+    public function __construct()
+    {
+        
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSenderId(): ?User
+    public function getSender(): ?User
     {
-        return $this->sender_id;
+        return $this->sender;
     }
 
-    public function setSenderId(?User $sender_id): self
+    public function setSender(?User $sender): self
     {
-        $this->sender_id = $sender_id;
+        $this->sender = $sender;
 
         return $this;
     }
 
-    public function getRecipientId(): ?User
+    public function getRecipient(): ?User
     {
-        return $this->recipient_id;
+        return $this->recipient;
     }
 
-    public function setRecipientId(?User $recipient_id): self
+    public function setRecipient(?User $recipient): self
     {
-        $this->recipient_id = $recipient_id;
+        $this->recipient = $recipient;
 
         return $this;
     }

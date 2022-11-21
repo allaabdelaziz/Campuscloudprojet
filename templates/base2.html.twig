@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Accueil
+			{% endblock %}
+			mywebsite</title>
+		<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<!-- Fichiers JS -->
+		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+		{% block javascripts %}{% endblock %}
+		<script src="{{ asset('assets/js/scripts.js') }}" defer></script>
+	</head>
+	<body>
+		<!doctype html>
+	</body>
+</html>
+<html lang="en">
+	<head>
+		<title>Sidebar 05</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+	</head>
+	<body>
+
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary m-2">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle Menu</span>
+					</button>
+				</div>
+				<div class="p-4">
+					<h1>
+						<a href="index.html" class="logo">GTROUVER
+							<span>GTROUVER Agency</span>
+						</a>
+					</h1>
+					<ul class="list-unstyled components mb-5">
+
+						<li class="active">
+							<a href="{{ path('app_newobject') }}" class="anim">
+								<span class="fa-solid fa-plus mr-3"></span>
+								<span>DECLARER UN OBJET
+								</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="{{ path('app_home') }}" class="anim">
+								<span class="fa fa-home mr-3"></span>
+								<span>HOME</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('app_user_profile') }}" class="anim">
+								<span class="fa fa-user mr-3"></span>
+								<span>PROFILE</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('app__profileobject') }}" class="anim">
+								<span class="fa fa-briefcase mr-3"></span>
+								<span>MES OBJETS</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="{{path('app_matching')}}" class="anim">
+								<span class="fa fa-sticky-note mr-3"></span>
+								<span>MATCHING</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{path('app_messages_envoyes')}}" class="anim">
+								<span class="fa fa-paper-plane mr-3"></span>
+								<span>MESSAGES ENVOYES</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="{{path('app_messages_recu')}}" class="anim">
+								<span class="fa fa-paper-plane mr-3"></span>
+								<span>MESSAGES RECUS</span>
+							</a>
+						</li>
+
+						
+						<li>
+							<a href="#">
+								<span class="fa fa-cogs mr-3"></span>
+								Services</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fa fa-paper-plane mr-3"></span>
+								Contacts</a>
+						</li>
+					</ul>
+
+
+					<div class="footer">
+
+
+						<div class="mb-5">
+							<h3 class="h6 mb-3">Subscribe for newsletter</h3>
+							<form action="#" class="subscribe-form">
+								<div class="form-group d-flex">
+									<div class="icon">
+										<span class="icon-paper-plane"></span>
+									</div>
+									<input type="text" class="form-control" placeholder="Enter Email Address">
+								</div>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+			</nav>
+			<div id="content" class="  p-4 p-md-5 pt-5"> {% block body %}{% endblock %}
+
+				<!-- Page Content  -->
+
+				</div>
+			</div>
+
+			<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+			<script src="{{ asset('assets/js/popper.js') }}"></script>
+			<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+			<script src="{{ asset('assets/js/main.js') }}"></script>
+		</body>
+	</html>
+</body></html>

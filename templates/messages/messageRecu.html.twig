@@ -1,0 +1,79 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block title %}messages reçus
+{% endblock %}
+
+{% block body %}
+<section>
+	<div class="container py-5">
+		{% if  app.user.recipient | length  == 0 %}
+			<h1 class="text-center m-5 p-5">
+				<span>
+					<i class="fa-solid fa-message-slash"></i>
+				</span>
+				vous n'avez pas de message encore
+			</h1>
+		{% else %}
+
+			<h3 class="m-3">
+				vous avez
+				{{ app.user.recipient | length }}
+				messages reçus
+			</h3>
+
+
+			<table class="table bg-white h-75 m-5">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">de</th>
+						<th scope="col">sujet</th>
+						<th scope="col">image</th>
+						<th scope="col">date</th>
+						<th scope="col">action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for message in app.user.recipient |sort ((a, b) => b.id <=> a.id) %}
+
+						{% if message.isread == 0  %}
+							{% set blod = "fw-bold thead-light" %}
+						{% else %}
+							{% set blod = "" %}
+						{% endif %}
+
+						<tr class={{blod}}>
+							<th scope="row ">1</th>
+							<td>
+								{{ loop.index }}-{{ message.sender.email }}
+							</td>
+							<td>{{ message.title }}</td>
+							{% if message.imagemessage == null %}
+								<td>
+									<span class="fa fa-file-image-o"></span>
+								</td>
+							{% else %}
+								<td><img style="width: 20px;" src="{{ asset('uploads/messages/'~ message.imagemessage) }}" alt="..."/></td>
+							{% endif %}
+							<td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td class="p-1">
+								<div class="row">
+									<a class=" btn col-md-3 text-primary" href="{{ path('app_messages_show', {'id': message.id}) }}">
+										<span class="fa fa-eye" aria-hidden="true"></span>
+									</a>
+									<div class="col-md-3 ">{{ include('messages/_delete_form.html.twig') }}</div>
+
+								</div>
+							</td>
+
+						</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+		{% include "partials/footer.html.twig" %}
+	</div>
+</section>
+{% endblock %}

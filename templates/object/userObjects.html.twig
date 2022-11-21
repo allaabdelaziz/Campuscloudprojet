@@ -1,0 +1,132 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Users index
+{% endblock %}
+
+
+{% block body %}
+	<section>
+		<div class="container py-5 ">
+
+			<section class="py-2">
+				<div class="row  justify-content-center">
+					<div class="">
+						<div class="text-center mb-5">
+							<h2 class="fw-bolder">VOS OBJETS TROUVES</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row gx-5">
+					{% for annonce in objectsFound %}
+						{% if annonce is  empty  %}
+							<h3>
+								vous avez pas d'objet trouvé
+							</h3>
+						{% else %}
+							<div class="col-md-3 mb-4">
+								<div class="card shadow border-2 ">
+									{% if annonce.image == null %}
+										<img class="card-img-top img-thumbnail  " src="{{ asset('images/no-image-featured-image.png') }}" alt="">
+									{% else %}
+										<div class="w-50 text-center">
+											<img class="card-img-top px-3 img-thumbnail " src="{{ asset('uploads/object/'~ annonce.image) }}" alt="..."/>
+										</div>
+									{% endif %}
+									<div class="card-body p-4">
+										<div class="badge bg-primary bg-gradient rounded-pill mb-2">T</div>
+
+										<h5 class="card-title mb-3">{{annonce.name}}</h5>
+										<p class="card-text mb-0 text-truncate ">{{annonce.description}}.</p>
+									</div>
+									<div class="card-footer p-2 pt-0 bg-transparent border-top-0">
+										<div class="d-flex align-items-end justify-content-between">
+											<div class="d-flex align-items-center mb-3">
+												<div class="small">
+
+													<div class="text-muted">{{annonce.createdat |format_datetime() }}
+														&middot;
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="card-text mb-0 ">
+
+											<a class="btn btn-danger " href="{{ path('app_objectdetails', { id: annonce.id}) }} ">suprimer</a>
+											<a class="btn btn-warning   " href="{{ path('app_objectedit', { id: annonce.id}) }} ">edit</a>
+											<a class="btn btn-link" href="{{ path('app_objectdetails', { id: annonce.id}) }} ">more</a>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+
+				</section>
+				<hr>
+				<section class="py-2">
+					<div class="row  justify-content-center">
+						<div class="">
+							<div class="text-center mb-5">
+								<h2 class="fw-bolder">VOS OBJETS PERDU</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row gx-5">
+						{% for annonce in objectsLost %}
+							{% if annonce is  empty  %}
+								<h3>
+									vous avez pas d'objet perdu</h3>
+							{% else %}
+								<div class="col-md-3 mb-4">
+									<div class="card h-100 shadow border-0 ">
+										{% if annonce.image == null %}
+
+											<img class="card-img-top img-thumbnail  " src="{{ asset('images/no-image-featured-image.png') }}" alt="">
+										{% else %}
+											<div class="w-50">
+												<img class="card-img-top px-3 img-thumbnail " src="{{ asset('uploads/object/'~ annonce.image) }}" alt="..."/>
+											</div>
+										{% endif %}
+										<div class="card-body p-4">
+											<div class="badge bg-danger bg-gradient rounded-pill mb-2">P</div>
+
+											<h5 class="card-title mb-3">{{annonce.name}}</h5>
+
+
+											<p class="card-text mb-0 text-truncate">{{annonce.description}}.</p>
+										</div>
+										<div class="card-footer p-2 pt-0 bg-transparent border-top-0">
+											<div class="d-flex align-items-end justify-content-between">
+												<div class="d-flex align-items-center mb-3">
+													<div class="small">
+
+														<div class="text-muted">{{annonce.createdat |format_datetime() }}
+															&middot;
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="card-text mb-0">
+
+												<a class="btn btn-danger" href="{{ path('app_objectdetails', { id: annonce.id}) }} ">suprimer</a>
+												<a class="btn btn-warning  " href="{{ path('app_objectedit', { id: annonce.id}) }} ">edit</a>
+												<a class="btn btn-link" href="{{ path('app_objectdetails', { id: annonce.id}) }} ">more</a>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+
+					</section>
+
+				</div>
+				{% include "partials/footer.html.twig" %}
+
+			</section>
+		{% endblock %}

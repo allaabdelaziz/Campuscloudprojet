@@ -1,0 +1,38 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block title %}matching
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="container py-5 ">
+		<div class=" m-5 p-5 bg-white">
+			<h2 class='text-center'>{{objet.name}}
+			</h2>
+
+			<p>
+				<h5 class="m-0 p-0">description:</h5>
+				{{objet.description}}</p>
+
+			<p>
+				<h5 class="m-0 p-0">Adresse du propriétaire:</h5>
+				{{objet.lostadress}}
+				,
+				{{objet.lostcity}}
+				-
+				{{objet.lostzip}}</p>
+			<p>
+				<h5 class="m-0 p-0">l'endroit où l'objet est perdu:</h5>
+				{{objet.clues}}</p>
+
+			<p>
+				<h5 class="m-0 p-0">date:</h5>
+				{{objet.lostdate|date('Y-m-d ') }}</p>
+			contactez la personne
+		</a>
+		<a class="btn btn-danger " href="">retour à la liste
+		</a>
+	</div>
+</div></div>{% endblock %}

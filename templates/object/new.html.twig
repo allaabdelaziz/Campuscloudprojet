@@ -1,0 +1,91 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Declarer un objet
+{% endblock %}
+
+
+{% block body %}
+	<div class=" row container-fluid  d-flex justify-content-center bg-object ml-0  ">
+		<div class="col container  d-flex justify-content-center   ">
+
+			<div class="col-md-5  ">
+				<h1 class="text-center">
+					<a class="logo anim  ">
+						<span>DECLARER</span>
+						UN<span>
+							OBJET</span>
+					</a>
+				</h1>
+				{{ form_start(form) }}
+				{{ form_start(form) }}
+
+				{{ form_row(form.status, {label:"Etat ? *" }) }}
+				{{ form_row(form.category, {
+								            label: 'choisir une categorie *' }) }}
+				{{ form_row(form.categoryDetails, {
+								            label: 'Plus précisément *' }) }}
+
+				{{ form_row(form.clues, {
+								            label: 'Ou ? ' ,
+											help :" Ex: Metro ,Bus , Aeroport , ......"
+								        }) }}
+
+				{{ form_row(form.name, {
+								            label: "Nom D'objet * " ,
+											
+								        }) }}
+
+
+				{{ form_row(form.lost_adress, {
+								            label: 'Adresse'	,
+											help :"Ex: 19 Avenue des Chenes" }
+										) }}
+
+
+				<div class="row">
+
+					<div class="col-md-6">
+						{{ form_row(form.lost_city, {
+								            label: 'ville'	,
+											help :"Ex: paris" }
+										) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_row(form.lost_zip, {
+								            label: 'Code postal',
+											help :" Ex: 75000" }
+								        ) }}</div>
+				</div>
+
+
+				{{ form_row(form.Lost_date, {
+								            label: 'Quand ? ',
+											
+								        }) }}
+
+				{{ form_row(form.image, {
+								            label: "Photo de l'objet"
+								        }) }}
+
+
+				{{ form_row(form.description, {
+								            label: 'Details *',
+										help :" Donnez un maximum de précision sur les circonstances de la perte/trouvaille et décrivez au mieux l’objet"
+
+											
+								        }) }}
+
+
+				<div class="text-center">
+					<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+				</div>
+
+
+				{{ form_end(form) }}
+
+			</div>
+
+		</div>
+	</div>
+	{% include "partials/footer.html.twig" %}
+{% endblock body  %}
