@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez nous
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center mb-5">
+				
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row no-gutters">
+						<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<h3 class="mb-4">G Trouver</h3>
+								<div id="form-message-warning" class="mb-4"></div>
+								<div id="form-message-success" class="mb-4">
+								Besoin d’un conseil, une question à poser,… contactez-nous par téléphone ou par mail. Nous vous apporterons une réponse adaptée dans les plus brefs délais.
+								</div>
+								<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									{{ form_start(form) }}
+
+									<div class="row">
+
+										<div class="col-md-6">{{ form_row(form.firstname, {
+								            label: 'Nom' }) }}
+										</div>
+
+										<div class="col-md-6">
+											{{ form_row(form.secondname,{
+								            label: 'Prenom' }) }}
+										</div>
+									</div>
+									{{ form_row(form.email, { label: 'Email', }) }}
+
+									{{ form_row(form.message, { label: 'Message', }) }}
+
+
+									<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+									{{ form_end(form) }}
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+							<div class="info-wrap bg-dark w-100 p-md-5 p-4">
+								<h3 class="text-white pb-5"><img  class="w-75"src="{{ asset('images/logo/logo-blancetverre.png') }}" alt="" srcset=""></h3>
+
+								<div class="dbox w-100 d-flex align-items-start">
+									<div class="icon d-flex align-items-center justify-content-center">
+										
+									</div>
+									<div class="text pl-3">
+										<p class="text-white">
+											<span><span class="fa fa-map-marker text-white"></span class="text-white"> Address:</span>
+											avenue des chenes . 75000 Paris</p>
+									</div>
+								</div>
+								<div class="dbox w-100 d-flex align-items-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										
+									</div>
+									<div class="text pl-3">
+										<p class="text-white">
+											<span class="fa fa-phone"></span><span> Phone: </span>
+											<a href="tel://1234567920">+33 615 62 42 70</a>
+										</p>
+									</div>
+								</div>
+								<div class="dbox w-100 d-flex align-items-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										
+									</div>
+									<div class="text pl-3">
+										<p class="text-white" >
+										<span class="fa fa-paper-plane"></span>	<span> Email: </span>
+											<a href="mailto:allaabdelazize@ygmail.com">contacte@gtrouver.com</a>
+										</p>
+									</div>
+								</div>
+								<div class="dbox w-100 d-flex align-items-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										
+									</div>
+									<div class="text pl-3">
+										<p class="text-white">
+										<span class="fa fa-globe"></span>	<span> Website: </span>
+											<a href="#">alla-abdelaziz.com</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

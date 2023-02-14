@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class ObjectController extends AbstractController
 {
     #[Route('/new', name: 'app_newobject', methods: ['GET', 'POST'])]
-    public function newobject(Request $request, EntityManagerInterface $entityManager,ObjetRepository  $ObjetRepository,SluggerInterface $slugger): Response
+    public function newobject(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
 
         $objet = new Objet();
@@ -57,17 +57,17 @@ class ObjectController extends AbstractController
                 }
                 $objet->setImage($newFilename);
             }
-    
+
             // $ObjetRepository->persist($objet);
             $entityManager->persist($objet);
             $entityManager->flush();
-        
+
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('object/new.html.twig', [
-   
+
             'form' => $form,
-           
+
         ]);
     }
 
@@ -76,7 +76,7 @@ class ObjectController extends AbstractController
     #[Route('/', name: 'app__profileobject')]
     public function userObject(UserRepository $userRepository, ObjetRepository $objetRepository): Response
     {
-       
+
         $findObjects = $objetRepository->findByUser($this->getUser());
         $lostObjects = $objetRepository->lostByUser($this->getUser());
         return $this->render('object/userObjects.html.twig', [
@@ -87,62 +87,65 @@ class ObjectController extends AbstractController
     }
 
 
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    #[Route('/object/{id}', name: 'app_objectdetails')]
+    #[Route('/{id}', name: 'app_objectdetails' ) ]
     public function Objectdetails(Objet $objet): Response
     {
-   
-     
-        return $this->render('object/objectdetails.html.twig', [
-            'objet' => $objet,
-        
-        ]);
+        if ($objet->getUser() == $this->getUser()) {
+
+            return $this->render('object/objectdetails.html.twig', [
+                'objet' => $objet,
+
+            ]);
+        }
+        return $this->renderForm('pageNoFound/404.html.twig');
     }
 
 
     #[Route('/{id}/edit', name: 'app_objectedit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Objet $objet, ObjetRepository $objetRepository ,SluggerInterface $slugger , EntityManagerInterface $entityManager, ): Response
+    public function edit(Request $request, Objet $objet, ObjetRepository $objetRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager,): Response
     {
-       
-        $form = $this->createForm(NewObjectType::class, $objet);
-        $form->handleRequest($request);
-      
+        if ($objet->getUser() == $this->getUser()) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-  
-            $imageobjet = $form->get('image')->getData();
-           
-            if (!empty($imageobjet)) {
-                
-                $originalFilename = pathinfo($imageobjet->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageobjet->guessExtension();
-                try {
-                    $imageobjet->move(
-                        $this->getParameter('image_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
+            $img = $objet->getImage();
+            $form = $this->createForm(NewObjectType::class, $objet);
+            $form->handleRequest($request);
+
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $imageobjet = $form->get('image')->getData();
+
+
+                if (!empty($imageobjet)) {
+
+                    $originalFilename = pathinfo($imageobjet->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageobjet->guessExtension();
+                    try {
+                        $imageobjet->move(
+                            $this->getParameter('image_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                    }
+                    $objet->setImage($newFilename);
+                } else {
+                    $objet->setImage($img);
                 }
-                $objet->setImage($newFilename);
-              
+
+                $entityManager->persist($objet);
+                $entityManager->flush();
+                return $this->redirectToRoute('app__profileobject', [], Response::HTTP_SEE_OTHER);
             }
-            
-            $entityManager->persist($objet);
-            $entityManager->flush();
-            return $this->redirectToRoute('app__profileobject', [], Response::HTTP_SEE_OTHER);
+
+            return $this->renderForm('object/edit.html.twig', [
+                'sub_category' => $objet,
+                'form' => $form,
+            ]);
         }
-
-        return $this->renderForm('object/edit.html.twig', [
-            'sub_category' => $objet,
-            'form' => $form,
-        ]);
+        return $this->renderForm('pageNoFound/404.html.twig');
     }
-
-
-
-
-    
 }

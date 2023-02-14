@@ -9,7 +9,10 @@
 
 		<table class="table">
 			<tbody>
-
+	<tr>
+					<th>title</th>
+					<td>{{ message.title }}</td>
+				</tr>
 
 				<tr>
 					<th>Message</th>
@@ -18,11 +21,11 @@
 
 			
 
-				{% if message.imagemessage == null %}
+				{% if message.image == null %}
 					{% else %}
 						<tr>
-							<th>Message</th>
-							<td><a href="{{ asset('uploads/messages/'~ message.imagemessage) }}"><img style="width: 90px;" src="{{ asset('uploads/messages/'~ message.imagemessage) }}" alt="..."/></a></td>
+							<th>image</th>
+							<td><a href="{{ asset('uploads/messages/'~ message.image) }}"><img style="width: 90px;" src="{{ asset('uploads/messages/'~ message.image) }}" alt="..."/></a></td>
 						</tr>
 				{% endif %}
 					<td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
@@ -32,7 +35,7 @@
 
 
 		<div class="row">
-			<a class=" btn col-md-3 text-primary" href="{{ path('app_messages_show', {'id': message.id}) }}">
+			<a class=" btn col-md-3 text-primary" href="{{ path('app_messages_recu', {'id': message.id}) }}">
 				<i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
 			</a>
 			<div class="col-md-3 ">{{ include('messages/_delete_form.html.twig') }}</div>

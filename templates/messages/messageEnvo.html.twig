@@ -20,7 +20,6 @@
 					{{ app.user.sender | length }}
 					Messages envoyes
 				</h3>
-
 				<table class="table bg-white h-75 m-5">
 					<thead>
 						<tr>
@@ -34,50 +33,48 @@
 					</thead>
 					<tbody>
 						{% set id = 0 %}
+						{% set n = 0 %}
 						{% for message in app.user.sender |sort ((a, b) => b.id <=> a.id) %}
-
+							{% set n = n + 1 %}
 							<tr>
 								<th scope="row"></th>
 								<td>{{ message.recipient.firstname }}
-									<div id="maDIV{{ id }}" style="display:none;" class="figure-caption-test">
-										<p>
-											message :</p>
-										<p>{{ message.message }}</p>
+								</td>
+								<td>
+									<h6>{{ message.title }}</h6>
+									<div class="collapse" id="collapseExample{{n}}">
+										<div class="card card-body">
+											{{ message.message }}
+										</div>
 									</div>
 								</td>
-
-								<td>{{ message.title }}</td>
-								{% if message.imagemessage == null %}
+								{% if message.image == null %}
 									{% set id = id + 1 %}
 									<td>
 										<span class="fa fa-file-image-o"></span>
 									</td>
 								{% else %}
-									<td><img style="width: 20px;" src="{{ asset('uploads/messages/'~ message.imagemessage) }}" alt="..."/></td>
+									<td>
+										<a href="{{ asset('uploads/messages/'~ message.image) }}" target="_blank"><img style="width: 20px;" src="{{ asset('uploads/messages/'~ message.image) }}" alt="..."/></a>
+									</td>
 								{% endif %}
 								<td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i') : '' }}</td>
 								<td class="p-1">
 									<div class="row">
-										<button onclick="toggleText()" class=" btn col-md-3 text-primary">
+										<button class="border-0  btn col-md-3 text-primary" data-bs-toggle="collapse" data-bs-target="#collapseExample{{n}}" aria-expanded="false" aria-controls="collapseExample">
 											<span class="fa fa-eye" aria-hidden="true"></span>
 										</button>
-
-
-										<div class="col-md-3 ">{{ include('messages/_delete_form.html.twig') }}</div>
-
+										<div class="col-md-3 border-0 ">{{ include('messages/_delete_form.html.twig') }}</div>
 									</div>
-
 								</td>
-
-
 							</tr>
-
 						{% endfor %}
 					{% endif %}
 				</tbody>
 			</table>
 
-			{% include "partials/footer.html.twig" %}
+			
 		</div>
+		{% include "partials/footer.html.twig" %}
 	</section>
 {% endblock %}

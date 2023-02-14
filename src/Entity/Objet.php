@@ -104,7 +104,10 @@ class Objet
 
     public function setImage(?string $image): self
     {
-        $this->image = $image;
+        if (!is_null($image)) {
+            $this->image = $image;
+        }
+        return $this;
 
         return $this;
     }

@@ -30,7 +30,7 @@ class Messages
     private $title;
 
     #[ORM\Column(type: 'boolean')]
-    private $isread;
+    private$isread = 0 ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;

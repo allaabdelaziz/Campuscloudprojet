@@ -1,56 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+
+{% block title %}Home
 {% endblock %}
 
 {% block body %}
 
 
-	<!-- End Nav section -->
-	<!-- Start home section -->
-		<section id="home">
-		 <div class="container">
+	<section class="bg-light ">
+		<div
+			class="container">
 			<!-- la class container définit la largeur souhaitée pour la section -->
-			<div class="row text-white align-items-center vh-100">
+			<div class="row  align-items-center vh-100">
 				<div
-					class="col-md-6 p-3">
+					class="col-md-6 ">
 					<!-- la class col-md-6 : permet de dire au navigateur que cette div occupera la moitié de l'espace disponible 12/2 à partir de l'écran medium et plus (lg - xl - xxl) en dessous de md (sm et xs : la div occupera la totalité de l'espace disponible 12/12) -->
 
-					<h4 class="lh-lg py-3">
+					<h4 class="lh-lg py-3 divv">
 						<em>Vous avez perdu ou trouvé un objet ? Déclarez-le et la communauté se mobilise pour vous aider à le retrouver
 						</em>
 					</h4>
-					<button
-						class="btn btn-outline-light mx-4">
-						<!-- Intégration de bootstrap icon -->
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewbox="0 0 16 16">
-							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-						</svg>
-						Join Now
-					</button>
-					<button class=" btn btn-outline-light mx-4 p-0 nav-item ">
-                        <a class="nav-link" aria-current="page" href="#services">Comment ca marche ?</a>
-                    </button>
+					<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start text-dark">
+						<a class="btn btn-primary btn-lg px-4 me-sm-3 text-dark" href="{{path('app_newobject')}} " id="hello">Declarer un objet</a>
+						<a class="btn btn-outline-light  border btn-lg px-4 text-dark " href="#dernieres-nouvelles" id="hello">Encore plus</a>
+					</div>
 				</div>
-				<div class="col-md-6 text-center">
-					<img class="img-fluid w-75 mt-3" src="{{ asset('assets/img/digital-agency.png') }}" alt="Digital Agency">
+				<div class=" col-md-6 ">
+					<img class="img-fluid  mt-3" src="{{ asset('images/cc1.jpg')}}" alt="Gtrouver">
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End home section -->
-	<!-- Start Services section -->
 
-	<Section id="services">
-		<div class="container text-center">
+
+	<Section class="bg-white" id ="howwork">
+		<div class="container text-center pt-5">
 			<div class="row gx-5">
 				<div class="col-12">
-					<h2 class="border-bottom w-25 border-3 pb-3 mb-5 mx-auto">comment ca marche!</h2>
+					<h2 class=" w-50 border-3 mt-5 mx-auto">comment ca marche!</h2>
 				</div>
-				<div class="row d-flex justify-content-center w-100">
+				<div class="row d-flex justify-content-center">
 
-					<div id="carouselExampleDark" class=" col carousel carousel-dark slide m-3 p-3  " data-bs-ride="carousel">
+					<div id="carouselExampleDark" class=" col carousel carousel-dark slide m-3 p-3 " data-bs-ride="carousel">
 
 						<div class="carousel-indicators">
 							<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -60,7 +51,7 @@
 						<div class="carousel-inner  m-4  p-4">
 							<div class="carousel-item active ">
 								<div class="row d-flex justify-content-center">
-									<div class="col-md-6 text-center">
+									<div class="col-md-6 py-4 text-center">
 										<h1>1<i class="fa-solid fa-list"></i>
 										</h1>
 										<h2 class="fs-4 fw-bold">Déclarez un objet perdu ou un objet trouvé</h2>
@@ -70,7 +61,7 @@
 							</div>
 							<div class="carousel-item" data-bs-interval="8000">
 								<div class="row d-flex justify-content-center">
-									<div class="col-md-6 text-center">
+									<div class="col-md-6 py-4 text-center">
 										<h1>2<i class="fa-solid fa-user-shield"></i>
 										</h1>
 										<h2 class="fs-4 fw-bold">Prouvez la propriété de votre objet</h2>
@@ -80,7 +71,7 @@
 							</div>
 							<div class="carousel-item">
 								<div class="row d-flex justify-content-center">
-									<div class="col-md-6 text-center">
+									<div class="col-md-6 py-4 text-center">
 										<h1>3<i class="fa-solid fa-handshake"></i>
 										</h1>
 										<h2 class="fs-4 fw-bold">Récupérez-le !</h2>
@@ -103,25 +94,22 @@
 		</div>
 
 	</Section>
-	<!-- End Services section -->
-	<!-- Start About section -->
-	<section id="about" class=" bg-dark">
-		<div class="container bg-dark pt-5">
-			<h2 class="text-center text-white border-bottom w-50 border-3 pb-3 mb-5 mx-auto">à propos de nous</h2>
-			<div class="row justify-content-center py-3">
-				<div class="col-md-6">
-					<h3 class="text-white">Mycompany</h3>
-					<p class=" lead lh-lg pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sequi
-																																																												                        necessitatibus temporibus culpa quos, eligendi rem tempore atque rerum cupiditate? Omnis officia
-																																																												                        reprehenderit natus, recusandae possimus fugiat soluta rem atque!
-																																																												                        Reiciendis esse, earum aperiam saepe optio sed tenetur iste asperiores? Ea sit maxime dicta
-																																																												                        doloremque quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas.
-																																																												                        Repellat cupiditate magnam nesciunt.
-																																																												                        quis tempore repellendus esse laudantium, ullam architecto, dolore a debitis quas. Repellat
-																																																												                        cupiditate magnam nesciunt.</p>
-				</div>
-				<div class="col-md-5">
-					<img class="img-fluid w-75 d-block mx-auto" src="{{ asset('assets/img/about.svg') }}" alt="">
+
+	<section class="py-5 bg-dark">
+		<div class="container px-5 my-5">
+			<div class="row gx-5 justify-content-center">
+				<div class="col-lg-10 col-xl-7">
+					<div class="text-center">
+						<div class="fs-4 mb-4 fst-italic text-white">"Parce que certains objets ont une grande valeur a vos yeux , nous mettons tout en oeuvre pour vous les restituer!"</div>
+						<div class="d-flex align-items-center justify-content-center">
+							<img class="rounded-circle me-3 w-25 mh-100" src="{{ asset('images/imagesprofil.jpg') }}" alt="..."/>
+							<div class="fw-bold text-white ">
+								alla abdelaziz
+								<span class="fw-bold text-primary mx-1 text-white">/</span>
+								CEO, Gtrouver
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -129,28 +117,29 @@
 	<section id="contact" class='container'>
 		<h2 class="text-center  w-25 border-3 pb-3 my-2 mx-auto ">Contact</h2>
 		<!-- Intégration d'un formulaire avec Bootstrap -->
-		<form class="w-50 mx-auto">
-			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">Last Name</label>
-				<input type="text" class="form-control" id="formGroupExampleInput">
-			</div>
-			<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">First Name</label>
-				<input type="text" class="form-control" id="formGroupExampleInput2">
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Email address</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-				<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlTextarea1" class="form-label">Message</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
+		<form method="POST" id="contactForm" name="contactForm" class="contactForm contactForm w-50 mx-auto">
+			{{ form_start(form) }}
 
+			<div class="row">
+
+				<div class="col-md-6">{{ form_row(form.firstname, {
+								            label: 'Nom' }) }}
+				</div>
+
+				<div class="col-md-6">
+					{{ form_row(form.secondname,{
+								            label: 'Prenom' }) }}
+				</div>
+			</div>
+			{{ form_row(form.email, { label: 'Email', }) }}
+
+			{{ form_row(form.message, { label: 'Message', }) }}
+
+
+			<button class="btn btn-primary">{{ button_label|default('envoyer') }}</button>
+			{{ form_end(form) }}
+		</form>
 	</section>
-		{% include "partials/footer.html.twig" %}
+	{% include "partials/footer.html.twig" %}
 
 {% endblock %}

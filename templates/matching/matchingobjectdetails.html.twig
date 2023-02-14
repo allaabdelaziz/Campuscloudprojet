@@ -30,6 +30,8 @@
 			<p>
 				<h5 class="m-0 p-0">date:</h5>
 				{{objet.lostdate|date('Y-m-d ') }}</p>
+						<a class="btn btn-primary " href="{{ path('app_messages_matching', { id: objet.id}) }} ">
+
 			contactez la personne
 		</a>
 		<a class="btn btn-danger " href="">retour à la liste

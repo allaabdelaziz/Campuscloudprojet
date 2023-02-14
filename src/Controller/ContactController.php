@@ -4,18 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomeController extends AbstractController
+class ContactController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/contact', name: 'app_contact')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-       
+
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -28,11 +29,10 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('home/index.html.twig', [
-           
+
+        return $this->render('contact/index.html.twig', [
+            'contact' => $contact,
             'form' => $form->createView()
         ]);
-    
     }
 }
-

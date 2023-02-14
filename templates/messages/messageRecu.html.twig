@@ -46,15 +46,15 @@
 						<tr class={{blod}}>
 							<th scope="row ">1</th>
 							<td>
-								{{ loop.index }}-{{ message.sender.email }}
+								{{ message.sender.firstname }}
 							</td>
 							<td>{{ message.title }}</td>
-							{% if message.imagemessage == null %}
+							{% if message.image == null %}
 								<td>
 									<span class="fa fa-file-image-o"></span>
 								</td>
 							{% else %}
-								<td><img style="width: 20px;" src="{{ asset('uploads/messages/'~ message.imagemessage) }}" alt="..."/></td>
+								<td><img style="width: 20px;" src="{{ asset('uploads/messages/'~ message.image) }}" alt="..."/></td>
 							{% endif %}
 							<td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td class="p-1">
@@ -73,7 +73,8 @@
 				</tbody>
 			</table>
 		{% endif %}
-		{% include "partials/footer.html.twig" %}
+	
 	</div>
 </section>
+	{% include "partials/footer.html.twig" %}
 {% endblock %}

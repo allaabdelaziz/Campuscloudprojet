@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Messages;
 use App\Repository\MessagesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +35,7 @@ class MessagesController extends AbstractController
     #[Route('/messagesenvoyes', name: 'app_messages_envoyes', methods: ['GET'])]
     public function indexenvoi(MessagesRepository $messagesRepository): Response
     {
+
         return $this->render('messages/messageEnvo.html.twig', [
             'messages' => $messagesRepository->findby(
                 array(),
@@ -62,23 +64,26 @@ class MessagesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_messages_show', methods: ['GET'])]
-    public function show(Messages $message,  MessagesRepository $messagesRepository): Response
+    public function show(Messages $message,   EntityManagerInterface $entityManager): Response
     {
         $message->setisread(true);
-        $messagesRepository->add($message);
+
+        $entityManager->persist($message);
+        $entityManager->flush();
         return $this->render('messages/show.html.twig', [
             'message' => $message,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_messages_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Messages $message, MessagesRepository $messagesRepository): Response
+    public function edit(Request $request, Messages $message, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $messagesRepository->add($message);
+            $entityManager->persist($message);
+            $entityManager->flush();
             return $this->redirectToRoute('app_messages_recu', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -89,12 +94,17 @@ class MessagesController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'app_messages_delete', methods: ['POST'])]
-    public function delete(Request $request, Messages $message, MessagesRepository $messagesRepository): Response
+    public function delete(Request $request, Messages $message,  EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
-            $messagesRepository->remove($message);
-        }
 
-        return $this->redirectToRoute('app_messages_envoyes', [], Response::HTTP_SEE_OTHER);
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($message);
+            $entityManager->flush();
+        }
+        if ($message->getSender()->getId() == $this->getUser()->getId()) {
+            return  $this->redirectToRoute('app_messages_envoyes', [], Response::HTTP_SEE_OTHER);
+        }else {
+            return  $this->redirectToRoute('app_messages_recu', [], Response::HTTP_SEE_OTHER);
+        }
     }
 }
