@@ -1,6 +1,53 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	 <script src="{{ asset('tarteaucitron.js-1.9.6/tarteaucitron.js') }}"></script>
+
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "", 
+          "bodyPosition": "bottom", 
+
+    	  "hashtag": "#tarteaucitron", 
+    	  "cookieName": "tarteaucitron",
+    
+    	  "orientation": "middle",
+       
+          "groupServices": false, 
+          "serviceDefaultState": "wait", 
+                           
+    	  "showAlertSmall": false, 
+    	  "cookieslist": false, 
+                           
+          "closePopup": false, 
+
+          "showIcon": true, 
+          //"iconSrc": "", 
+          "iconPosition": "BottomRight",
+
+    	  "adblocker": false, 
+                           
+          "DenyAllCta" : true, 
+          "AcceptAllCta" : true,
+          "highPrivacy": true, 
+                           
+    	  "handleBrowserDNTRequest": false, 
+
+    	  "removeCredit": false, 
+    	  "moreInfoLink": true,
+
+          "useExternalCss": false, 
+          "useExternalJs": false,        
+          "readmoreLink": "", 
+
+          "mandatory": true, 
+          "mandatoryCta": true 
+        });
+	
+        tarteaucitron.user.multiplegtagUa = ['G-RF4ZS4XC54'];
+        (tarteaucitron.job = tarteaucitron.job || []).push('multiplegtag');
+        </script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-RF4ZS4XC54"></script>
 		<meta charset="UTF-8">
 		<title>{% block title %}Accueil{% endblock %} mywebsite</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
