@@ -45,10 +45,10 @@ class MessagesController extends AbstractController
     }
     #[Route('/new', name: 'app_messages_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MessagesRepository $messagesRepository): Response
-    {
+    {  
         $message = new Messages();
         $form = $this->createForm(MessagesType::class, $message);
-        $form->handleRequest($request);
+        $messageData =  $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('success', 'Votre message a etait bien envoye');

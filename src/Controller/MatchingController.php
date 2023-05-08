@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use Exception;
 use App\Entity\User;
 use App\Entity\Objet;
@@ -9,8 +10,10 @@ use App\Entity\Messages;
 use App\Form\MatchingMessagesType;
 use App\Repository\ObjetRepository;
 use App\Repository\MessagesRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
+use App\service\SendMailService;
+use Proxies\__CG__\App\Entity\User as EntityUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -78,20 +81,32 @@ class MatchingController extends AbstractController
 
 
     #[Route('/matching/send/{id}', name: 'app_messages_matching', methods: ['GET', 'POST'])]
-    public function send(Request $request, EntityManagerInterface $entityManager, Objet $objet, SluggerInterface $slugger): Response
+    public function send(Request $request, EntityManagerInterface $entityManager, Objet $objet, SluggerInterface $slugger ,SendMailService $mail, UserRepository $userRepository ): Response
     {
-       
+
         if ($objet->isStatus() == true && $objet->getUser() != $this->getUser()) {
             $message = new Messages();
             $form = $this->createForm(MatchingMessagesType::class, $message);
-            $form->handleRequest($request);
-
+            $contact = $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $this->addFlash('success', 'Votre message a etait bien envoye');
                 $message->setSender($this->getUser());
-                $message->setRecipient($objet->getUser()->getId());
-
+                $message->setRecipient($objet->getUser());
+                $user = $userRepository->findById($objet->getUser()->getId());
+                $context = [
+                    'user' => $this->getUser()->getFirstname(),
+                    'sujet' =>$contact->getData()->getTitle(),
+                    'message' => $contact->getData()->getMessage() ,
+                ];
+            
+                $mail->send(
+                   "contact@gtrouve.com",
+                   $user[0]["email"] ,
+                    'Notification de nouveau message reçu',
+                    'contact',
+                    $context
+                );
 
                 $imageobjet = $form->get('image')->getData();
                 if ($imageobjet) {
@@ -117,6 +132,7 @@ class MatchingController extends AbstractController
                 'message' => $message,
                 'form' => $form,
             ]);
-        }  return $this->renderForm('pageNoFound/404.html.twig');
+        }
+        return $this->renderForm('pageNoFound/404.html.twig');
     }
 }

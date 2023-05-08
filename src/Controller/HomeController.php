@@ -34,5 +34,20 @@ class HomeController extends AbstractController
         ]);
     
     }
+    
+    #[Route('/mentions-legales', name: 'app_conditions', methods: ['GET', 'POST'])]
+    public function conditions(): Response
+    {
+
+        return $this->render('home/conditionsU.html.twig', []);
+    }
+
+
+    #[Route('/politique-confidentialite', name: 'app_confidentialite', methods: ['GET', 'POST'])]
+    public function contact(): Response
+    {
+
+        return $this->render('home/confidentialite.html.twig', []);
+    }
 }
 
