@@ -27,45 +27,29 @@ class AppFixtures extends Fixture
         $categories->setName('Portefeuille et CB & argent');
         $manager->persist($categories);
 
-
-
-
         $categories = new Categories();
         $categories->setName('Papiers et documents officiels');
         $manager->persist($categories);
-
-
-
 
         $categories = new Categories();
         $categories->setName('Sacs & Bagages');
         $manager->persist($categories);
 
-
-
-
-
-
         $categories = new Categories();
         $categories->setName('Bijoux, montres');
         $manager->persist($categories);
-
-
 
         $categories = new Categories();
         $categories->setName('vêtements et accessoires');
         $manager->persist($categories);
 
-
         $categories = new Categories();
         $categories->setName('Animaux');
         $manager->persist($categories);
 
-
         $categories = new Categories();
         $categories->setName('Effets personnels');
         $manager->persist($categories);
-
 
         $categories = new Categories();
         $categories->setName(' Divers');
@@ -238,7 +222,7 @@ class AppFixtures extends Fixture
        
 
 
-        //////////////////////////SubCategory//////////////////////////
+
 
 
         //////////////////////////////////Users//////////////////////////
