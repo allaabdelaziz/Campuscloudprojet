@@ -148,4 +148,15 @@ class ObjectController extends AbstractController
         }
         return $this->renderForm('pageNoFound/404.html.twig');
     }
+
+    
+    #[Route('/{id}', name: 'appobject_delete', methods: ['POST'])]
+    public function delete(Request $request, Objet $objet, ObjetRepository $objetRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $objet->getId(), $request->request->get('_token'))) {
+            $objetRepository->remove($objet);
+        }
+
+        return $this->redirectToRoute('object/userObjects.html.twig', [], Response::HTTP_SEE_OTHER);
+    }
 }

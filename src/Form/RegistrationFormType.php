@@ -19,11 +19,11 @@ class RegistrationFormType extends AbstractType
     {
         $builder
         ->add('civilite', ChoiceType::class, [
-            'label' => "civilite",
+            'label' => "Civilite",
             'choices' => [
                 'civilite' => "",
                 'Monsieur' => "monsieur",
-                'madame' => "madame",
+                'Madame' => "Madame",
 
             ],
         ])
